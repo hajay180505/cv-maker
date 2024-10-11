@@ -14,19 +14,28 @@ public class ResumeDetail {
         this.title = title;
     }
 
-    private String name, dateOfBirth, address, phoneNumber, email;
+    private String name;
+
+
+
+    private String rollNumber;
+    private String dateOfBirth;
+    private String address;
+    private String phoneNumber;
+    private String email;
     private List<AcademicQualification> academicQualifications;
     private List<ProjectDetail> nonAcademicProjects, academicProjects, researchProjects;
     private List<SkillSet> skillSets;
     private List<String> areasOfInterest, extraCurricular;
 
-    public ResumeDetail(String title, String name, String dateOfBirth, String address, String phoneNumber, String email){
+    public ResumeDetail(String title, String name, String rollNumber, String dateOfBirth, String address, String phoneNumber, String email){
         this.title = title;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
         this.address = address;
         this.phoneNumber = phoneNumber;
         this.email = email;
+        this.rollNumber = rollNumber;
         try{
             checkFields();
         } catch (InvalidFieldValueException e) {
@@ -52,6 +61,14 @@ public class ResumeDetail {
 
     public void setName(String name) {
         this.name = name;
+    }
+
+    public String getRollNumber() {
+        return rollNumber;
+    }
+
+    public void setRollNumber(String rollNumber) {
+        this.rollNumber = rollNumber;
     }
 
     public String getDateOfBirth() {

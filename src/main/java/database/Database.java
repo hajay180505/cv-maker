@@ -49,7 +49,9 @@ public class Database {
             return false;
         }
     }
-
+    public ResumeDetail getFillerResumeDetail() throws NoUserFoundException {
+        return getResumeDetail("static", "TwoPagerOfficial");
+    }
     public void upsertUser(User u) {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase(dbName).withCodecRegistry(pojoCodecRegistry);
