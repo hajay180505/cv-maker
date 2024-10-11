@@ -5,7 +5,7 @@
     <modelVersion>4.0.0</modelVersion>
 
     <groupId>com.itextpdf</groupId>
-    <artifactId>cv-maker-java</artifactId>
+    <artifactId>cv-maker</artifactId>
     <version>1.0-SNAPSHOT</version>
 
     <properties>
