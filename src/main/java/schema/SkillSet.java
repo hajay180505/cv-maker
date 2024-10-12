@@ -2,7 +2,7 @@ package schema;
 
 import java.util.List;
 
-class SkillSet {
+public class SkillSet {
     private String skillName;
     private List<String> skills;
 

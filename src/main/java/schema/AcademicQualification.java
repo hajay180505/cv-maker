@@ -2,7 +2,7 @@ package schema;
 
 import java.sql.Date;
 
-class AcademicQualification {
+public class AcademicQualification {
     private String qualificationName;
     private String fromDate;
     private String toDate;
@@ -28,9 +28,7 @@ class AcademicQualification {
 
     public void checkFields() throws InvalidFieldValueException {
         try {
-            Date.valueOf(fromDate);
-            Date.valueOf(toDate);
-            Integer.valueOf(grade);
+            Float.valueOf(grade);
         } catch (Exception e) {
             throw new InvalidFieldValueException(e.getMessage());
         }

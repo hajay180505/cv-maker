@@ -1,6 +1,7 @@
 package schema;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 public class ResumeDetail {
@@ -18,6 +19,11 @@ public class ResumeDetail {
     private String rollNumber;
     private String dateOfBirth;
     private String gender;
+    private String collegeName;
+    private String course;
+    private String yearOfStudy;
+    private String departmentName;
+    private String courseDuration;
 
 
     private String address;
@@ -27,7 +33,73 @@ public class ResumeDetail {
     private List<String> languages;
     private String gitHubLink;
     private String linkedinLink;
+    private Objective objective;
+    private String declarationLocation;
+    private String declarationDate;
 
+    public String getDeclarationLocation() {
+        return declarationLocation;
+    }
+
+    public void setDeclarationLocation(String declarationLocation) {
+        this.declarationLocation = declarationLocation;
+    }
+
+    public String getDeclarationDate() {
+        return declarationDate;
+    }
+
+    public void setDeclarationDate(String declarationDate) {
+        this.declarationDate = declarationDate;
+    }
+
+    public String getCourseDuration() {
+        return courseDuration;
+    }
+
+    public void setCourseDuration(String courseDuration) {
+        this.courseDuration = courseDuration;
+    }
+
+    public String getDepartmentName() {
+        return departmentName;
+    }
+
+    public void setDepartmentName(String departmentName) {
+        this.departmentName = departmentName;
+    }
+
+    public String getCollegeName() {
+        return collegeName;
+    }
+
+    public void setCollegeName(String collegeName) {
+        this.collegeName = collegeName;
+    }
+
+    public String getCourse() {
+        return course;
+    }
+
+    public void setCourse(String course) {
+        this.course = course;
+    }
+
+    public String getYearOfStudy() {
+        return yearOfStudy;
+    }
+
+    public void setYearOfStudy(String yearOfStudy) {
+        this.yearOfStudy = yearOfStudy;
+    }
+
+    public Objective getObjective() {
+        return objective;
+    }
+
+    public void setObjective(Objective objective) {
+        this.objective = objective;
+    }
 
     public String getGitHubLink() {
         return gitHubLink;

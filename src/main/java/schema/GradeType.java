@@ -1,5 +1,5 @@
 package schema;
 
-enum GradeType {
+public enum GradeType {
     CGPA, PERCENTAGE
 }

@@ -70,4 +70,21 @@ public class Process {
                 return new Paragraph(tok[2]).add(th).add(tok[1]).add(tok[0]);
         }
     }
+
+    public static Paragraph processOrdinal(String string, PdfFont font){
+        Text st = new Text("st").setFont(font).setTextRise(7).setFontSize(6);
+        Text nd = new Text("nd").setFont(font).setTextRise(7).setFontSize(6);
+        Text rd = new Text("rd").setFont(font).setTextRise(7).setFontSize(6);
+        Text th = new Text("th").setFont(font).setTextRise(7).setFontSize(6);
+        switch (string) {
+            case "1":
+                return new Paragraph(new Text("1")).add(st);
+            case "2":
+                return new Paragraph(new Text("2")).add(nd);
+            case "3":
+                return new Paragraph(new Text("3")).add(rd);
+            default:
+                return new Paragraph(string).add(th);
+        }
+    }
 }

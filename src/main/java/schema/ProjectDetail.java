@@ -2,7 +2,7 @@ package schema;
 
 import java.util.List;
 
-class ProjectDetail {
+public class ProjectDetail {
     private String projectName;
     private String projectDescription;
     private List<String> techStack;
