@@ -15,9 +15,6 @@ public class ResumeDetail {
     }
 
     private String name;
-
-
-
     private String rollNumber;
     private String dateOfBirth;
     private String address;

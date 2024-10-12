@@ -28,6 +28,20 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Database {
+
+    /*
+        ajay : {
+            name: ok
+            resumedetails : [
+                {
+
+                }, ..
+            ]
+        }
+
+
+     */
+
     String uri;
     CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
     CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
@@ -49,9 +63,11 @@ public class Database {
             return false;
         }
     }
+
     public ResumeDetail getFillerResumeDetail() throws NoUserFoundException {
         return getResumeDetail("static", "TwoPagerOfficial");
     }
+
     public void upsertUser(User u) {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase(dbName).withCodecRegistry(pojoCodecRegistry);
