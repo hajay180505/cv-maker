@@ -17,15 +17,65 @@ public class ResumeDetail {
     private String name;
     private String rollNumber;
     private String dateOfBirth;
+    private String gender;
+
+
     private String address;
     private String phoneNumber;
     private String email;
+    private String imagePath;
+    private List<String> languages;
+    private String gitHubLink;
+    private String linkedinLink;
+
+
+    public String getGitHubLink() {
+        return gitHubLink;
+    }
+
+    public void setGitHubLink(String gitHubLink) {
+        this.gitHubLink = gitHubLink;
+    }
+
+    public String getLinkedinLink() {
+        return linkedinLink;
+    }
+
+    public void setLinkedinLink(String linkedinLink) {
+        this.linkedinLink = linkedinLink;
+    }
+
+    public String getGender() {
+        return gender;
+    }
+
+    public void setGender(String gender) {
+        this.gender = gender;
+    }
+
+    public List<String> getLanguages() {
+        return languages;
+    }
+
+
+    public void setLanguages(List<String> languages) {
+        this.languages = languages;
+    }
+
+    public String getImagePath() {
+        return imagePath;
+    }
+
+    public void setImagePath(String imagePath) {
+        this.imagePath = imagePath;
+    }
+
     private List<AcademicQualification> academicQualifications;
     private List<ProjectDetail> nonAcademicProjects, academicProjects, researchProjects;
     private List<SkillSet> skillSets;
     private List<String> areasOfInterest, extraCurricular;
 
-    public ResumeDetail(String title, String name, String rollNumber, String dateOfBirth, String address, String phoneNumber, String email){
+    public ResumeDetail(String title, String name, String rollNumber, String dateOfBirth, String address, String phoneNumber, String email) {
         this.title = title;
         this.name = name;
         this.dateOfBirth = dateOfBirth;
@@ -33,7 +83,7 @@ public class ResumeDetail {
         this.phoneNumber = phoneNumber;
         this.email = email;
         this.rollNumber = rollNumber;
-        try{
+        try {
             checkFields();
         } catch (InvalidFieldValueException e) {
             System.out.println(e.getMessage());
@@ -44,10 +94,10 @@ public class ResumeDetail {
         try {
             Date.valueOf(dateOfBirth);
             new EmailValidator().validate(email);
-            if (phoneNumber.length() != 10 || Long.parseLong(phoneNumber) <= 0){
+            if (phoneNumber.length() != 10 || Long.parseLong(phoneNumber) <= 0) {
                 throw new InvalidFieldValueException("Invalid phone number.");
             }
-        }catch (Exception e) {
+        } catch (Exception e) {
             throw new InvalidFieldValueException(e.getMessage());
         }
     }
