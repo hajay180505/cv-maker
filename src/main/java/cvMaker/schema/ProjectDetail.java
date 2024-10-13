@@ -1,4 +1,4 @@
-package schema;
+package cvMaker.schema;
 
 import java.util.List;
 

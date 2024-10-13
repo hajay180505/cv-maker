@@ -37,4 +37,4 @@ build/
 ### Mac OS ###
 .DS_Store
 
-src/main/java/config/CONNECTION_CREDENTIALS.java
+src/main/java/cvMaker/config/CONNECTION_CREDENTIALS.java

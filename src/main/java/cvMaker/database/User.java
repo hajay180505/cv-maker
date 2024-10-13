@@ -1,6 +1,6 @@
-package database;
+package cvMaker.database;
 
-import schema.ResumeDetail;
+import cvMaker.schema.ResumeDetail;
 
 import java.util.List;
 

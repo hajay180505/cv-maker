@@ -1,4 +1,4 @@
-package utils;
+package cvMaker.utils;
 
 import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.layout.element.Paragraph;

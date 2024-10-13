@@ -1,4 +1,4 @@
-package schema;
+package cvMaker.schema;
 
 public class Objective {
     private String startMonth;

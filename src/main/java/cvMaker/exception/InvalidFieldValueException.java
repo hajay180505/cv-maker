@@ -1,6 +1,6 @@
-package schema;
+package cvMaker.exception;
 
-class InvalidFieldValueException extends Exception {
+public class InvalidFieldValueException extends Exception {
     String message;
 
     public InvalidFieldValueException(String message) {

@@ -1,7 +1,8 @@
-package schema;
+package cvMaker.schema;
+
+import cvMaker.exception.InvalidFieldValueException;
 
 import java.sql.Date;
-import java.util.ArrayList;
 import java.util.List;
 
 public class ResumeDetail {

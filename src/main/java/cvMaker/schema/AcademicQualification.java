@@ -1,6 +1,6 @@
-package schema;
+package cvMaker.schema;
 
-import java.sql.Date;
+import cvMaker.exception.InvalidFieldValueException;
 
 public class AcademicQualification {
     private String qualificationName;

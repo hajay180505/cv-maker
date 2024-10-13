@@ -1,4 +1,6 @@
-package schema;
+package cvMaker.schema;
+
+import cvMaker.exception.InvalidFieldValueException;
 
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;

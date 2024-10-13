@@ -1,4 +1,4 @@
-package schema;
+package cvMaker.exception;
 
 public class InsertionException extends Exception {
     String message;

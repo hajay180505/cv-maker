@@ -1,4 +1,4 @@
-package database;
+package cvMaker.database;
 
 import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
@@ -10,6 +10,7 @@ import com.mongodb.client.model.Projections;
 import com.mongodb.client.model.UpdateOptions;
 import com.mongodb.client.model.Updates;
 import com.mongodb.client.result.UpdateResult;
+import cvMaker.config.CONNECTION_CREDENTIALS;
 import org.bson.Document;
 import org.bson.codecs.configuration.CodecProvider;
 import org.bson.codecs.configuration.CodecRegistry;
@@ -20,9 +21,9 @@ import com.mongodb.client.MongoClients;
 import com.mongodb.client.MongoCollection;
 import com.mongodb.client.MongoDatabase;
 import org.bson.conversions.Bson;
-import schema.InsertionException;
-import schema.NoUserFoundException;
-import schema.ResumeDetail;
+import cvMaker.exception.InsertionException;
+import cvMaker.exception.NoUserFoundException;
+import cvMaker.schema.ResumeDetail;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -51,6 +52,12 @@ public class Database {
         this.uri = uri;
         this.dbName = dbName;
         this.collectionName = collectionName;
+    }
+
+    public Database(){
+        this.uri = CONNECTION_CREDENTIALS.URI;
+        this.dbName = CONNECTION_CREDENTIALS.DATABASE_NAME;
+        this.collectionName = CONNECTION_CREDENTIALS.COLLECTION_NAME;
     }
 
     public boolean ping(){

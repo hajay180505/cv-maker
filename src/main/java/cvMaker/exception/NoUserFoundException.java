@@ -1,4 +1,4 @@
-package schema;
+package cvMaker.exception;
 
 public class NoUserFoundException extends Exception{
     String message;
