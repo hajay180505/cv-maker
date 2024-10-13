@@ -1,4 +1,4 @@
-package cvMaker.exception;
+package com.cvmaker.cvmaker.exception;
 
 public class NoUserFoundException extends Exception{
     String message;

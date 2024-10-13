@@ -1,4 +1,4 @@
-package cvMaker.exception;
+package com.cvmaker.cvmaker.exception;
 
 public class InvalidFieldValueException extends Exception {
     String message;

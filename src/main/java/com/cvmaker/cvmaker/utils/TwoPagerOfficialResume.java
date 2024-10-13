@@ -1,4 +1,4 @@
-package cvMaker.utils;
+package com.cvmaker.cvmaker.utils;
 
 import com.itextpdf.io.image.ImageData;
 import com.itextpdf.io.image.ImageDataFactory;
@@ -18,10 +18,10 @@ import com.itextpdf.layout.element.*;
 import com.itextpdf.layout.properties.HorizontalAlignment;
 import com.itextpdf.layout.properties.UnitValue;
 import com.itextpdf.layout.properties.VerticalAlignment;
-import cvMaker.Main;
-import cvMaker.database.Database;
-import cvMaker.exception.NoUserFoundException;
-import cvMaker.schema.*;
+import com.cvmaker.cvmaker.Main;
+import com.cvmaker.cvmaker.database.Database;
+import com.cvmaker.cvmaker.exception.NoUserFoundException;
+import com.cvmaker.cvmaker.schema.*;
 
 import java.io.File;
 import java.io.IOException;
@@ -75,9 +75,9 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         PdfDocument pdf = new PdfDocument(writer);
 
         //fonts
-        final String CALIBRI_REGULAR = "fonts/Calibri/calibri-regular.ttf";
-        final String CALIBRI_BOLD = "fonts/Calibri/calibri-bold.ttf";
-        final String CALIBRI_ITALIC = "fonts/Calibri/calibri-italic.ttf";
+        final String CALIBRI_REGULAR = "src/main/resources/com/cvmaker/cvmaker/fonts/Calibri/calibri-regular.ttf";
+        final String CALIBRI_BOLD = "src/main/resources/com/cvmaker/cvmaker/fonts/Calibri/calibri-bold.ttf";
+        final String CALIBRI_ITALIC = "src/main/resources/com/cvmaker/cvmaker/fonts/Calibri/calibri-italic.ttf";
 
         PdfFont calibriRegular = PdfFontFactory.createFont(CALIBRI_REGULAR);
         PdfFont calibriBold = PdfFontFactory.createFont(CALIBRI_BOLD);

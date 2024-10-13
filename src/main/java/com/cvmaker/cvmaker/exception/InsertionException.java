@@ -1,4 +1,4 @@
-package cvMaker.exception;
+package com.cvmaker.cvmaker.exception;
 
 public class InsertionException extends Exception {
     String message;

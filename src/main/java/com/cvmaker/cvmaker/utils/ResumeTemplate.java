@@ -1,7 +1,7 @@
-package cvMaker.utils;
+package com.cvmaker.cvmaker.utils;
 
 import com.itextpdf.kernel.colors.DeviceRgb;
-import cvMaker.schema.*;
+import com.cvmaker.cvmaker.schema.*;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -9,7 +9,7 @@ import java.util.Arrays;
 
 public interface ResumeTemplate {
 
-    String BASE_FILE_PATH = "src/main/resources/";
+    String BASE_FILE_PATH = "src/main/resources/com/cvmaker/cvmaker/";
     static ResumeDetail getLocalFillerResumeDetail(){
 
         ResumeDetail resume = new ResumeDetail("SUMMA",
