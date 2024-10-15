@@ -41,7 +41,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         }
         else{
             try {
-                this.resume = new Database().getFillerResumeDetail();
+                this.resume = Database.getDatabase().getFillerResumeDetail();
             } catch (NoUserFoundException e) {
                 throw new RuntimeException(e);
             }
@@ -49,7 +49,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
     }
 
     public boolean checkNulls(ResumeDetail resumeDetail) {
-        return resumeDetail.getPhoneNumber() != null && resumeDetail.getAcademicProjects() != null &&
+        return resumeDetail != null && resumeDetail.getPhoneNumber() != null && resumeDetail.getAcademicProjects() != null &&
                 resumeDetail.getAddress() != null && resumeDetail.getAcademicQualifications() != null &&
                 resumeDetail.getAreasOfInterest() != null && resumeDetail.getCollegeName() != null &&
                 resumeDetail.getCourse() != null && resumeDetail.getDateOfBirth() != null &&
@@ -64,7 +64,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
 
     @Override
     public String getTemplate() throws IOException {
-
+        System.out.println(resume);
         if (!checkNulls(resume)) {
             throw new InvalidObjectException("Resume detail object has null values in mandatory fields");
         }

@@ -15,7 +15,12 @@ module com.cvmaker.cvmaker {
     requires layout;
     requires java.sql;
     requires io;
+    requires jdk.jshell;
 
     opens com.cvmaker.cvmaker to javafx.fxml;
     exports com.cvmaker.cvmaker;
+    exports com.cvmaker.cvmaker.database;
+    exports com.cvmaker.cvmaker.exception;
+    exports com.cvmaker.cvmaker.schema;
+    exports com.cvmaker.cvmaker.utils;
 }

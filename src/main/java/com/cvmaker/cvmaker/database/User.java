@@ -1,6 +1,7 @@
 package com.cvmaker.cvmaker.database;
 
 import com.cvmaker.cvmaker.schema.ResumeDetail;
+import org.bson.types.ObjectId;
 
 import java.util.List;
 

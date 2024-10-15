@@ -1,5 +1,7 @@
 package com.cvmaker.cvmaker.schema;
 
+import org.bson.Document;
+
 import java.util.List;
 
 public class SkillSet {
@@ -25,5 +27,12 @@ public class SkillSet {
 
     public void setSkillName(String skillName) {
         this.skillName = skillName;
+    }
+
+    public static SkillSet map(Document document) {
+        return new SkillSet(
+                document.getString("skillName"),
+                document.getList("skills", String.class)
+        );
     }
 }

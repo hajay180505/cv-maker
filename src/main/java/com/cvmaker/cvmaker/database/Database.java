@@ -4,6 +4,7 @@ import static com.mongodb.MongoClientSettings.getDefaultCodecRegistry;
 import static org.bson.codecs.configuration.CodecRegistries.fromProviders;
 import static org.bson.codecs.configuration.CodecRegistries.fromRegistries;
 
+import com.cvmaker.cvmaker.mapper.ListMapper;
 import com.mongodb.MongoException;
 import com.mongodb.client.model.Filters;
 import com.mongodb.client.model.Projections;
@@ -25,6 +26,7 @@ import com.cvmaker.cvmaker.exception.InsertionException;
 import com.cvmaker.cvmaker.exception.NoUserFoundException;
 import com.cvmaker.cvmaker.schema.ResumeDetail;
 
+import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -47,14 +49,23 @@ public class Database {
     CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
     CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
     String dbName, collectionName;
+    static Database db = null;
 
-    public Database(String uri, String dbName, String collectionName) {
+
+    public static Database getDatabase(){
+        if (db == null){
+            db = new Database();
+        }
+        return db;
+    }
+
+    private Database(String uri, String dbName, String collectionName) {
         this.uri = uri;
         this.dbName = dbName;
         this.collectionName = collectionName;
     }
 
-    public Database(){
+    private Database(){
         this.uri = CONNECTION_CREDENTIALS.URI;
         this.dbName = CONNECTION_CREDENTIALS.DATABASE_NAME;
         this.collectionName = CONNECTION_CREDENTIALS.COLLECTION_NAME;
@@ -154,7 +165,12 @@ public class Database {
             Document userDoc = collection.find(filter).projection(projection).first();
 
             if (userDoc != null) {
-                List<ResumeDetail> resumeDetails = userDoc.getList("resumeDetails", ResumeDetail.class);
+                ListMapper<ResumeDetail> resumeDetailListMapper= new ListMapper<ResumeDetail>(ResumeDetail.class);
+                List<ResumeDetail> resumeDetails =
+                        resumeDetailListMapper.map(
+                                        userDoc.getList("resumeDetails", Document.class)
+                            );
+//                                System.out.println(resumeDetails);
 
                 if (resumeDetails != null) {
                     for (ResumeDetail detail : resumeDetails) {
@@ -170,7 +186,9 @@ public class Database {
                 throw new NoUserFoundException("User not found with the name: " + username);
             }
 
-        } 
+        } catch (InvocationTargetException | IllegalAccessException | NoSuchMethodException e) {
+            throw new RuntimeException(e);
+        }
     }
     
     public void addResumeDetail(String username, ResumeDetail newDetail) throws NoUserFoundException {

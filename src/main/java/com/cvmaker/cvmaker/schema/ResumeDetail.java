@@ -1,21 +1,15 @@
 package com.cvmaker.cvmaker.schema;
 
 import com.cvmaker.cvmaker.exception.InvalidFieldValueException;
+import com.cvmaker.cvmaker.mapper.ListMapper;
+import org.bson.Document;
 
 import java.sql.Date;
 import java.util.List;
 
 public class ResumeDetail {
-    String title;
 
-    public String getTitle() {
-        return title;
-    }
-
-    public void setTitle(String title) {
-        this.title = title;
-    }
-
+    private String title;
     private String name;
     private String rollNumber;
     private String dateOfBirth;
@@ -25,18 +19,48 @@ public class ResumeDetail {
     private String yearOfStudy;
     private String departmentName;
     private String courseDuration;
-
-
     private String address;
     private String phoneNumber;
     private String email;
     private String imagePath;
-    private List<String> languages;
     private String gitHubLink;
     private String linkedinLink;
-    private Objective objective;
     private String declarationLocation;
     private String declarationDate;
+
+    private List<String> languages;
+    private List<String> areasOfInterest, extraCurricular;
+
+
+    private Objective objective;
+
+    private List<AcademicQualification> academicQualifications;
+    private List<ProjectDetail> nonAcademicProjects, academicProjects, researchProjects;
+    private List<SkillSet> skillSets;
+
+
+    public ResumeDetail(String title, String name, String rollNumber, String dateOfBirth, String address, String phoneNumber, String email) {
+        this.title = title;
+        this.name = name;
+        this.dateOfBirth = dateOfBirth;
+        this.address = address;
+        this.phoneNumber = phoneNumber;
+        this.email = email;
+        this.rollNumber = rollNumber;
+        try {
+            checkFields();
+        } catch (InvalidFieldValueException e) {
+            System.out.println(e.getMessage());
+        }
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public void setTitle(String title) {
+        this.title = title;
+    }
 
     public String getDeclarationLocation() {
         return declarationLocation;
@@ -143,25 +167,6 @@ public class ResumeDetail {
         this.imagePath = imagePath;
     }
 
-    private List<AcademicQualification> academicQualifications;
-    private List<ProjectDetail> nonAcademicProjects, academicProjects, researchProjects;
-    private List<SkillSet> skillSets;
-    private List<String> areasOfInterest, extraCurricular;
-
-    public ResumeDetail(String title, String name, String rollNumber, String dateOfBirth, String address, String phoneNumber, String email) {
-        this.title = title;
-        this.name = name;
-        this.dateOfBirth = dateOfBirth;
-        this.address = address;
-        this.phoneNumber = phoneNumber;
-        this.email = email;
-        this.rollNumber = rollNumber;
-        try {
-            checkFields();
-        } catch (InvalidFieldValueException e) {
-            System.out.println(e.getMessage());
-        }
-    }
 
     public void checkFields() throws InvalidFieldValueException {
         try {
@@ -277,5 +282,62 @@ public class ResumeDetail {
 
     public void setExtraCurricular(List<String> extraCurricular) {
         this.extraCurricular = extraCurricular;
+    }
+
+
+    public static ResumeDetail map(Document document) {
+        ResumeDetail rd = new ResumeDetail(
+                document.getString("title"),
+                document.getString("name"),
+                document.getString("rollNumber"),
+                document.getString("dateOfBirth"),
+                document.getString("address"),
+                document.getString("phoneNumber"),
+                document.getString("email")
+        );
+
+        rd.setGender(document.getString("gender"));
+        rd.setCollegeName(document.getString("collegeName"));
+        rd.setCourse(document.getString("course"));
+        rd.setYearOfStudy(document.getString("yearOfStudy"));
+        rd.setDepartmentName(document.getString("departmentName"));
+        rd.setCourseDuration(document.getString("courseDuration"));
+        rd.setGitHubLink(document.getString("gitHubLink"));
+        rd.setLinkedinLink(document.getString("linkedinLink"));
+        rd.setDeclarationLocation(document.getString("declarationLocation"));
+        rd.setDeclarationDate(document.getString("declarationDate"));
+        rd.setImagePath(document.getString("imagePath"));
+
+        rd.setLanguages(document.getList("languages", String.class));
+        rd.setAreasOfInterest(document.getList("areasOfInterest", String.class));
+        rd.setExtraCurricular(document.getList("extraCurricular", String.class));
+
+        rd.setObjective(Objective.map(document.get("objective", Document.class)));
+
+        try {
+            ListMapper<AcademicQualification> academicQualificationListMapper = new ListMapper<>(AcademicQualification.class);
+            ListMapper<ProjectDetail> projectDetailListMapper = new ListMapper<>(ProjectDetail.class);
+            ListMapper<SkillSet> skillSetListMapper = new ListMapper<>(SkillSet.class);
+
+            rd.setAcademicQualifications(
+                    academicQualificationListMapper.map(document.getList("academicQualifications", Document.class))
+            );
+            rd.setNonAcademicProjects(
+                    projectDetailListMapper.map(document.getList("nonAcademicProjects", Document.class))
+            );
+            rd.setAcademicProjects(
+                    projectDetailListMapper.map(document.getList("academicProjects", Document.class))
+            );
+            rd.setResearchProjects(
+                    projectDetailListMapper.map(document.getList("researchProjects", Document.class))
+            );
+            rd.setSkillSets(
+                    skillSetListMapper.map(document.getList("skillSets", Document.class))
+            );
+
+        } catch (Exception e) {
+            throw new RuntimeException(e);
+        }
+        return rd;
     }
 }

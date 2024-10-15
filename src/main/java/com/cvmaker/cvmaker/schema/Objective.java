@@ -1,6 +1,8 @@
 package com.cvmaker.cvmaker.schema;
 
-public class Objective {
+import org.bson.Document;
+
+public class Objective{
     private String startMonth;
     private String endMonth;
     private String startYear;
@@ -43,5 +45,15 @@ public class Objective {
 
     public void setEndYear(String endYear) {
         this.endYear = endYear;
+    }
+
+    public static Objective map(Document document) {
+        return new Objective(
+                document.getString("startMonth"),
+                document.getString("endMonth"),
+                document.getString("startYear"),
+                document.getString("endYear")
+
+        );
     }
 }

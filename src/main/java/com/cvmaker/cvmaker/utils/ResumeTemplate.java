@@ -7,7 +7,7 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public interface ResumeTemplate {
+public interface    ResumeTemplate {
 
     String BASE_FILE_PATH = "src/main/resources/com/cvmaker/cvmaker/";
     static ResumeDetail getLocalFillerResumeDetail(){
@@ -32,6 +32,8 @@ public interface ResumeTemplate {
         resume.setCourse("Integrated MSc Software Systems");
         resume.setCourseDuration("5");
         resume.setDepartmentName("Department of Applied Mathematics and Computational Sciences");
+        resume.setDeclarationLocation("Coimbatore");
+        resume.setDeclarationDate("18/05/2005");
 
         ArrayList<String> lang = new ArrayList<>();
         lang.add("Python");
@@ -65,9 +67,9 @@ public interface ResumeTemplate {
 
         resume.setAreasOfInterest(Arrays.asList("Database design", "Full Stack Development", "Object Oriented Programming", "Operating Systems"));
 
-        AcademicQualification aq1 = new AcademicQualification("M.Sc Software Systems", "2022","2027", "PSG College of Technology, Coimbatore", "9.86", GradeType.CGPA);
-        AcademicQualification aq2 = new AcademicQualification("XII (Higher secondary, State Board)",null,"2022", "Kongu Vellalar Matric. Hr. Sec School, Coimbatore", "99", GradeType.PERCENTAGE);
-        AcademicQualification aq3 = new AcademicQualification("X (SSLC, State board)", null,"2020", "Kongu Vellalar Matric. Hr. Sec School, Coimbatore", "99", GradeType.PERCENTAGE);
+        AcademicQualification aq1 = new AcademicQualification("M.Sc Software Systems", "2022","2027", "PSG College of Technology, Coimbatore", "9.86", "CGPA");
+        AcademicQualification aq2 = new AcademicQualification("XII (Higher secondary, State Board)",null,"2022", "Kongu Vellalar Matric. Hr. Sec School, Coimbatore", "99", "PERCENTAGE");
+        AcademicQualification aq3 = new AcademicQualification("X (SSLC, State board)", null,"2020", "Kongu Vellalar Matric. Hr. Sec School, Coimbatore", "99", "PERCENTAGE");
         resume.setAcademicQualifications(
                 Arrays.asList(aq1, aq2, aq3 )
         );

@@ -1,23 +1,126 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="AutoImportSettings">
+    <option name="autoReloadType" value="SELECTIVE" />
+  </component>
+  <component name="ChangeListManager">
+    <list default="true" id="e595b43e-ff43-4540-8624-32fd3f00277b" name="Changes" comment="">
+      <change afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/mapper/ListMapper.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/Main.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/Main.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/database/Database.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/database/Database.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/database/User.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/database/User.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/AcademicQualification.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/AcademicQualification.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/Objective.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/Objective.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/ProjectDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/ProjectDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/ResumeDetail.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/ResumeDetail.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/SkillSet.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/schema/SkillSet.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/utils/ResumeTemplate.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/utils/ResumeTemplate.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/utils/TwoPagerOfficialResume.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/cvmaker/cvmaker/utils/TwoPagerOfficialResume.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/java/module-info.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/module-info.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/main/resources/com/cvmaker/cvmaker/templates/TwoPagerOfficialResume.pdf" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/cvmaker/cvmaker/templates/TwoPagerOfficialResume.pdf" afterDir="false" />
+    </list>
+    <option name="SHOW_DIALOG" value="false" />
+    <option name="HIGHLIGHT_CONFLICTS" value="true" />
+    <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
+    <option name="LAST_RESOLUTION" value="IGNORE" />
+  </component>
+  <component name="FileTemplateManagerImpl">
+    <option name="RECENT_TEMPLATES">
+      <list>
+        <option value="package-info" />
+        <option value="Class" />
+        <option value="Interface" />
+      </list>
+    </option>
+  </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitHubPullRequestSearchHistory">{
+  &quot;lastFilter&quot;: {
+    &quot;state&quot;: &quot;OPEN&quot;,
+    &quot;assignee&quot;: &quot;hajay180505&quot;
+  }
+}</component>
+  <component name="GithubPullRequestsUISettings">{
+  &quot;selectedUrlAndAccountId&quot;: {
+    &quot;url&quot;: &quot;https://github.com/hajay180505/cv-maker.git&quot;,
+    &quot;accountId&quot;: &quot;1a252659-093c-44ac-be0d-0ebe9069c497&quot;
+  }
+}</component>
+  <component name="ProblemsViewState">
+    <option name="selectedTabId" value="CurrentFile" />
+  </component>
+  <component name="ProjectColorInfo">{
+  &quot;associatedIndex&quot;: 1
+}</component>
+  <component name="ProjectId" id="2nNR5uEPbqA7SU33G8NtM6775qQ" />
   <component name="ProjectViewState">
     <option name="autoscrollToSource" value="true" />
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
+  <component name="PropertiesComponent">{
+  &quot;keyToString&quot;: {
+    &quot;Application.Main.executor&quot;: &quot;Run&quot;,
+    &quot;RunOnceActivity.ShowReadmeOnStart&quot;: &quot;true&quot;,
+    &quot;git-widget-placeholder&quot;: &quot;main&quot;,
+    &quot;kotlin-language-version-configured&quot;: &quot;true&quot;,
+    &quot;last_opened_file_path&quot;: &quot;/home/ajayh/Documents/GitHub/cv-maker&quot;,
+    &quot;node.js.detected.package.eslint&quot;: &quot;true&quot;,
+    &quot;node.js.detected.package.tslint&quot;: &quot;true&quot;,
+    &quot;node.js.selected.package.eslint&quot;: &quot;(autodetect)&quot;,
+    &quot;node.js.selected.package.tslint&quot;: &quot;(autodetect)&quot;,
+    &quot;nodejs_package_manager_path&quot;: &quot;npm&quot;,
+    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
+  }
+}</component>
   <component name="RunManager">
-    <configuration default="true" type="JetRunConfigurationType">
+    <configuration name="Main" type="Application" factoryName="Application">
+      <option name="MAIN_CLASS_NAME" value="com.cvmaker.cvmaker.Main" />
       <module name="cvmaker" />
       <method v="2">
         <option name="Make" enabled="true" />
       </method>
     </configuration>
-    <configuration default="true" type="KotlinStandaloneScriptRunConfigurationType">
-      <module name="cvmaker" />
-      <option name="filePath" />
-      <method v="2">
-        <option name="Make" enabled="true" />
-      </method>
-    </configuration>
+  </component>
+  <component name="SharedIndexes">
+    <attachedChunks>
+      <set>
+        <option value="bundled-jdk-9823dce3aa75-b114ca120d71-intellij.indexing.shared.core-IU-242.21829.142" />
+        <option value="bundled-js-predefined-d6986cc7102b-7c0b70fcd90d-JavaScript-IU-242.21829.142" />
+      </set>
+    </attachedChunks>
+  </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="TaskManager">
+    <task active="true" id="Default" summary="Default task">
+      <changelist id="e595b43e-ff43-4540-8624-32fd3f00277b" name="Changes" comment="" />
+      <created>1728811366336</created>
+      <option name="number" value="Default" />
+      <option name="presentableId" value="Default" />
+      <updated>1728811366336</updated>
+      <workItem from="1728811367538" duration="312000" />
+      <workItem from="1728881117961" duration="164000" />
+      <workItem from="1728970584165" duration="5308000" />
+      <workItem from="1728981348953" duration="812000" />
+      <workItem from="1728985966654" duration="4853000" />
+      <workItem from="1728994279978" duration="5724000" />
+    </task>
+    <servers />
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="3" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <breakpoint enabled="true" type="java-exception">
+          <properties class="java.lang.ClassCastException" package="java.lang" />
+          <option name="timeStamp" value="3" />
+        </breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

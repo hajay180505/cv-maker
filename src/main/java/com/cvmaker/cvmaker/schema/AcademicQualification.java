@@ -1,6 +1,7 @@
 package com.cvmaker.cvmaker.schema;
 
 import com.cvmaker.cvmaker.exception.InvalidFieldValueException;
+import org.bson.Document;
 
 public class AcademicQualification {
     private String qualificationName;
@@ -11,13 +12,13 @@ public class AcademicQualification {
     private GradeType gradeType;
 
 
-    public AcademicQualification(String qualificationName, String fromDate, String toDate, String instituteName, String grade, GradeType gradeType) {
+    public AcademicQualification(String qualificationName, String fromDate, String toDate, String instituteName, String grade, String gradeType) {
         this.qualificationName = qualificationName;
         this.fromDate = fromDate;
         this.toDate = toDate;
         this.instituteName = instituteName;
         this.grade = grade;
-        this.gradeType = gradeType;
+        this.gradeType = GradeType.valueOf(gradeType);
 
         try {
             checkFields();
@@ -80,6 +81,17 @@ public class AcademicQualification {
 
     public void setGradeType(GradeType gradeType) {
         this.gradeType = gradeType;
+    }
+
+
+    public static AcademicQualification map(Document document) {
+        return new AcademicQualification(document.getString("qualificationName"),
+                document.getString("fromDate"),
+                document.getString("toDate"),
+                document.getString("instituteName"),
+                document.getString("grade"),
+                document.getString("gradeType")
+        );
     }
 
 }

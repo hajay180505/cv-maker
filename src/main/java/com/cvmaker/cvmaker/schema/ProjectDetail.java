@@ -1,5 +1,7 @@
 package com.cvmaker.cvmaker.schema;
 
+import org.bson.Document;
+
 import java.util.List;
 
 public class ProjectDetail {
@@ -65,5 +67,16 @@ public class ProjectDetail {
 
     public void setDuration(String duration) {
         this.duration = duration;
+    }
+
+    public static ProjectDetail map(Document document) {
+        return new ProjectDetail(
+                document.getString("projectName"),
+                document.getString("githubLink"),
+                document.getString("projectName"),
+                document.getList("highlightedWords", String.class),
+                document.getList("techStack",  String.class),
+                document.getString("projectDescription")
+        );
     }
 }
