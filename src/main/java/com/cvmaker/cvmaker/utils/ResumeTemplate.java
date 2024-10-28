@@ -7,9 +7,21 @@ import java.io.IOException;
 import java.util.ArrayList;
 import java.util.Arrays;
 
-public interface    ResumeTemplate {
+/**
+ * The interface Resume template.
+ */
+public interface  ResumeTemplate {
 
+    /**
+     * The constant BASE_FILE_PATH.
+     */
     String BASE_FILE_PATH = "src/main/resources/com/cvmaker/cvmaker/";
+
+    /**
+     * Get local filler resume detail resume detail.
+     *
+     * @return the resume detail
+     */
     static ResumeDetail getLocalFillerResumeDetail(){
 
         ResumeDetail resume = new ResumeDetail("SUMMA",
@@ -140,6 +152,23 @@ public interface    ResumeTemplate {
         return resume;
     }
 
+    /**
+     * Gets template.
+     *
+     * @return the template
+     * @throws IOException the io exception
+     */
     String getTemplate() throws IOException;
+
+    /**
+     * Generate resume string.
+     *
+     * @param resumeDetail the resume detail
+     * @param accentColor  the accent color
+     * @param username     the username
+     * @param filename     the filename
+     * @return the string
+     * @throws IOException the io exception
+     */
     String generateResume(ResumeDetail resumeDetail, DeviceRgb accentColor, String username, String filename) throws IOException;
 }

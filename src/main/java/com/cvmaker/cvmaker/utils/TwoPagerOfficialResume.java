@@ -29,11 +29,26 @@ import java.io.InvalidObjectException;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 
+/**
+ * The type Two pager official resume.
+ */
 public class TwoPagerOfficialResume implements ResumeTemplate {
+    /**
+     * The Resume.
+     */
     ResumeDetail resume;
+    /**
+     * The Accent color.
+     */
     DeviceRgb accentColor;
+    /**
+     * The Dest.
+     */
     String dest = BASE_FILE_PATH + "templates/TwoPagerOfficialResume.pdf";
 
+    /**
+     * Instantiates a new Two pager official resume.
+     */
     public TwoPagerOfficialResume() {
         this.accentColor = new DeviceRgb(238, 236, 225);
         if (Main.IS_DEV){
@@ -48,18 +63,117 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         }
     }
 
+    /**
+     * Check nulls boolean.
+     *
+     * @param resumeDetail the resume detail
+     * @return the boolean
+     */
     public boolean checkNulls(ResumeDetail resumeDetail) {
-        return resumeDetail != null && resumeDetail.getPhoneNumber() != null && resumeDetail.getAcademicProjects() != null &&
-                resumeDetail.getAddress() != null && resumeDetail.getAcademicQualifications() != null &&
-                resumeDetail.getAreasOfInterest() != null && resumeDetail.getCollegeName() != null &&
-                resumeDetail.getCourse() != null && resumeDetail.getDateOfBirth() != null &&
-                resumeDetail.getEmail() != null && resumeDetail.getGitHubLink() != null &&
-                resumeDetail.getGender() != null &&resumeDetail.getExtraCurricular() != null &&
-                resumeDetail.getYearOfStudy() != null && resumeDetail.getTitle() != null &&
-                resumeDetail.getSkillSets() != null && resumeDetail.getRollNumber() !=null &&
-                resumeDetail.getObjective() != null && resumeDetail.getName() != null &&
-                resumeDetail.getLinkedinLink() !=null && resumeDetail.getLanguages() != null &&
-                resumeDetail.getImagePath() != null ;
+
+        if (resumeDetail == null) {
+            System.out.println("ResumeDetail object is null.");
+            return false;
+        }
+        if (resumeDetail.getPhoneNumber() == null) {
+            System.out.println("Phone number is missing.");
+            return false;
+        }
+        if (resumeDetail.getAcademicProjects() == null) {
+            System.out.println("Academic projects are missing.");
+            return false;
+        }
+        if (resumeDetail.getAddress() == null) {
+            System.out.println("Address is missing.");
+            return false;
+        }
+        if (resumeDetail.getAcademicQualifications() == null) {
+            System.out.println("Academic qualifications are missing.");
+            return false;
+        }
+        if (resumeDetail.getAreasOfInterest() == null) {
+            System.out.println("Areas of interest are missing.");
+            return false;
+        }
+        if (resumeDetail.getCollegeName() == null) {
+            System.out.println("College name is missing.");
+            return false;
+        }
+        if (resumeDetail.getCourse() == null) {
+            System.out.println("Course is missing.");
+            return false;
+        }
+        if (resumeDetail.getDateOfBirth() == null) {
+            System.out.println("Date of birth is missing.");
+            return false;
+        }
+        if (resumeDetail.getEmail() == null) {
+            System.out.println("Email is missing.");
+            return false;
+        }
+        if (resumeDetail.getGitHubLink() == null) {
+            System.out.println("GitHub link is missing.");
+            return false;
+        }
+        if (resumeDetail.getGender() == null) {
+            System.out.println("Gender is missing.");
+            return false;
+        }
+        if (resumeDetail.getExtraCurricular() == null) {
+            System.out.println("Extra-curricular activities are missing.");
+            return false;
+        }
+        if (resumeDetail.getYearOfStudy() == null) {
+            System.out.println("Year of study is missing.");
+            return false;
+        }
+        if (resumeDetail.getTitle() == null) {
+            System.out.println("Title is missing.");
+            return false;
+        }
+        if (resumeDetail.getSkillSets() == null) {
+            System.out.println("Skill sets are missing.");
+            return false;
+        }
+        if (resumeDetail.getRollNumber() == null) {
+            System.out.println("Roll number is missing.");
+            return false;
+        }
+        if (resumeDetail.getObjective() == null) {
+            System.out.println("Objective is missing.");
+            return false;
+        }
+        if (resumeDetail.getName() == null) {
+            System.out.println("Name is missing.");
+            return false;
+        }
+        if (resumeDetail.getLinkedinLink() == null) {
+            System.out.println("LinkedIn link is missing.");
+            return false;
+        }
+        if (resumeDetail.getLanguages() == null) {
+            System.out.println("Languages are missing.");
+            return false;
+        }
+        if (resumeDetail.getImagePath() == null) {
+            System.out.println("Image path is missing.");
+            return false;
+        }
+
+        return true; // All fields are present
+
+        
+//        return resumeDetail != null && resumeDetail.getPhoneNumber() != null && resumeDetail.getAcademicProjects() != null &&
+//                resumeDetail.getAddress() != null && resumeDetail.getAcademicQualifications() != null &&
+//                resumeDetail.getAreasOfInterest() != null && resumeDetail.getCollegeName() != null &&
+//                resumeDetail.getCourse() != null && resumeDetail.getDateOfBirth() != null &&
+//                resumeDetail.getEmail() != null && resumeDetail.getGitHubLink() != null &&
+//                resumeDetail.getGender() != null &&resumeDetail.getExtraCurricular() != null &&
+//                resumeDetail.getYearOfStudy() != null && resumeDetail.getTitle() != null &&
+//                resumeDetail.getSkillSets() != null && resumeDetail.getRollNumber() !=null &&
+//                resumeDetail.getObjective() != null && resumeDetail.getName() != null &&
+//                resumeDetail.getLinkedinLink() !=null && resumeDetail.getLanguages() != null &&
+//                resumeDetail.getImagePath() != null ;
     }
 
     @Override
@@ -304,7 +418,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
 
     @Override
     public String generateResume(ResumeDetail resumeDetail, DeviceRgb accentColor, String username, String filename) throws IOException {
-        this.dest = BASE_FILE_PATH + username + "/" + filename + ".pdf";
+        this.dest = filename + ".pdf";
         File f = new File(dest);
         if (f.exists()) {
             f.delete();
@@ -315,6 +429,13 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         return getTemplate();
     }
 
+    /**
+     * Render skill set table.
+     *
+     * @param skillSets the skill sets
+     * @param font      the font
+     * @return the table
+     */
     public Table renderSkillSet(java.util.List<SkillSet> skillSets, PdfFont font){
         Table table = new Table(
                 UnitValue.createPercentArray(
@@ -337,6 +458,13 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         return table;
     }
 
+    /**
+     * Render areas of interest table.
+     *
+     * @param areasOfInterest the areas of interest
+     * @param font            the font
+     * @return the table
+     */
     public Table renderAreasOfInterest(java.util.List<String> areasOfInterest, PdfFont font){
         Table table = new Table(
                 UnitValue.createPercentArray(
@@ -358,6 +486,14 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         return table;
     }
 
+    /**
+     * Render academic record table.
+     *
+     * @param academicRecord the academic record
+     * @param fontRegular    the font regular
+     * @param fontBold       the font bold
+     * @return the table
+     */
     public Table renderAcademicRecord(java.util.List<AcademicQualification> academicRecord, PdfFont fontRegular, PdfFont fontBold){
         Table table = new Table(
                 UnitValue.createPercentArray(
@@ -417,6 +553,14 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
 
     }
 
+    /**
+     * Render projects.
+     *
+     * @param projectDetails the project details
+     * @param fontRegular    the font regular
+     * @param fontBold       the font bold
+     * @param document       the document
+     */
     public static void renderProjects(java.util.List<ProjectDetail> projectDetails, PdfFont fontRegular, PdfFont fontBold, Document document) {
             for (ProjectDetail project : projectDetails) {
                 // Create a paragraph for the project name with the GitHub link

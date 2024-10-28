@@ -4,9 +4,21 @@ import com.itextpdf.kernel.font.PdfFont;
 import com.itextpdf.layout.element.Paragraph;
 import com.itextpdf.layout.element.Text;
 
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.stream.Collectors;
 
+/**
+ * The type Process.
+ */
 public class Process {
+    /**
+     * Process string.
+     *
+     * @param strings the strings
+     * @return the string
+     */
     public static String process(List<String> strings){
         StringBuilder ans = new StringBuilder();
         for( int i = 0; i < strings.size(); i++){
@@ -17,10 +29,24 @@ public class Process {
         }
         return ans.toString();
     }
+
+    /**
+     * Process mobile string.
+     *
+     * @param string the string
+     * @return the string
+     */
     public static String processMobile(String string){
         return "+91-"+string.substring(0,5) + "-" + string.substring(5,10);
     }
 
+    /**
+     * Process date paragraph.
+     *
+     * @param string the string
+     * @param font   the font
+     * @return the paragraph
+     */
     static Paragraph processDate(String string, PdfFont font){
         String[] tok = string.split("-");
         if(tok[2].startsWith("0")){
@@ -71,6 +97,13 @@ public class Process {
         }
     }
 
+    /**
+     * Process ordinal paragraph.
+     *
+     * @param string the string
+     * @param font   the font
+     * @return the paragraph
+     */
     public static Paragraph processOrdinal(String string, PdfFont font){
         Text st = new Text("st").setFont(font).setTextRise(7).setFontSize(6);
         Text nd = new Text("nd").setFont(font).setTextRise(7).setFontSize(6);
@@ -87,4 +120,5 @@ public class Process {
                 return new Paragraph(string).add(th);
         }
     }
+
 }

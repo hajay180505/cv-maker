@@ -1,15 +1,27 @@
 package com.cvmaker.cvmaker;
 
+import com.cvmaker.cvmaker.controllers.WelcomeController;
 import com.cvmaker.cvmaker.database.Database;
 import com.cvmaker.cvmaker.database.User;
 import com.cvmaker.cvmaker.exception.InsertionException;
 import com.cvmaker.cvmaker.schema.*;
 import com.cvmaker.cvmaker.utils.ResumeTemplate;
 import com.cvmaker.cvmaker.utils.TwoPagerOfficialResume;
+
 import javafx.application.Application;
-import javafx.fxml.FXMLLoader;
+import javafx.geometry.Orientation;
 import javafx.scene.Scene;
+import javafx.scene.control.Separator;
 import javafx.stage.Stage;
+
+import javafx.geometry.Pos;
+import javafx.scene.layout.HBox;
+import javafx.scene.control.Label;
+import javafx.scene.text.Font;
+import javafx.scene.paint.Color;
+import javafx.geometry.Insets;
+import javafx.scene.control.Button;
+import javafx.scene.layout.VBox;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -138,7 +150,7 @@ public class Main extends Application {
 
         List<ResumeDetail> r = new ArrayList<>();
         r.add(resume);
-        User u = new User("static", r );
+        User u = new User("static", r ,"", "");
         System.out.println(u.getName());
         try {
             Database.getDatabase().insertUser(u);
@@ -146,17 +158,16 @@ public class Main extends Application {
             throw new RuntimeException(e);
         }
     }
-    public final static boolean IS_DEV = false;
+
+    public final static boolean IS_DEV = true;
     @Override
     public void start(Stage stage) throws IOException {
 
         // singleton
-        Database db = Database.getDatabase(); // creds from CONNECTION_CREDENTIALS interface
+        Database db = Database.getDatabase();
 
         if (db.ping()){
             System.out.println("PONG");
-//            insertFiller();
-
         }
         else {
             System.out.println("ERROR");
@@ -164,21 +175,50 @@ public class Main extends Application {
 
         ResumeTemplate rt = new TwoPagerOfficialResume();
         try {
-
             System.out.println("Filler resume at : " + rt.getTemplate());
 
         } catch (IOException e) {
             throw new RuntimeException(e);
         }
 
-        FXMLLoader fxmlLoader = new FXMLLoader(Main.class.getResource("hello-view.fxml"));
-        Scene scene = new Scene(fxmlLoader.load(), 320, 240);
-        stage.setTitle("Hello!");
+        Label welcomeLabel = new Label("Welcome to CV Maker!");
+        welcomeLabel.setFont(Font.font("Arial", 24));
+        welcomeLabel.setTextFill(Color.valueOf("#003366"));
+
+        Label optionLabel = new Label("Please choose an option");
+        optionLabel.setFont(Font.font("Arial", 18));
+        optionLabel.setTextFill(Color.valueOf("#003366"));
+
+
+        WelcomeController controller = new WelcomeController();
+        Button loginButton = new Button("Login");
+        loginButton.setStyle("-fx-background-color: #4CAF50; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 20;");
+        loginButton.setOnAction(event -> controller.handleLoginInfo(stage));
+        Button signUpButton = new Button("Sign Up");
+        signUpButton.setStyle("-fx-background-color: #008CBA; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 20;");
+        signUpButton.setOnAction(event -> controller.handleSignUp(stage));
+
+        HBox hBoxTop = new HBox(10);
+        hBoxTop.getChildren().addAll(welcomeLabel, optionLabel);
+        hBoxTop.setAlignment(Pos.CENTER);
+
+        HBox hBoxBottom = new HBox(10);
+        hBoxBottom.getChildren().addAll(loginButton, signUpButton);
+        hBoxBottom.setAlignment(Pos.CENTER);
+
+        VBox vbox = new VBox(15);
+        vbox.setPadding(new Insets(20));
+        vbox.setStyle("-fx-background-color: #e6f7ff;");
+        vbox.getChildren().addAll(welcomeLabel, new Separator(Orientation.HORIZONTAL), optionLabel, hBoxTop, hBoxBottom);//, loginButton, signUpButton);
+
+        Scene scene = new Scene(vbox, 600, 300);
+        stage.setTitle("CV Maker");
         stage.setScene(scene);
         stage.show();
+
     }
 
     public static void main(String[] args) {
-        launch();
+        launch(args);
     }
 }

@@ -30,6 +30,9 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.ArrayList;
 import java.util.List;
 
+/**
+ * The type Database.
+ */
 public class Database {
 
     /*
@@ -45,13 +48,36 @@ public class Database {
 
      */
 
+    /**
+     * The Uri.
+     */
     String uri;
+    /**
+     * The Pojo codec provider.
+     */
     CodecProvider pojoCodecProvider = PojoCodecProvider.builder().automatic(true).build();
+    /**
+     * The Pojo codec registry.
+     */
     CodecRegistry pojoCodecRegistry = fromRegistries(getDefaultCodecRegistry(), fromProviders(pojoCodecProvider));
-    String dbName, collectionName;
+    /**
+     * The Db name.
+     */
+    String dbName, /**
+     * The Collection name.
+     */
+    collectionName;
+    /**
+     * The Db.
+     */
     static Database db = null;
 
 
+    /**
+     * Get database database.
+     *
+     * @return the database
+     */
     public static Database getDatabase(){
         if (db == null){
             db = new Database();
@@ -71,6 +97,11 @@ public class Database {
         this.collectionName = CONNECTION_CREDENTIALS.COLLECTION_NAME;
     }
 
+    /**
+     * Ping boolean.
+     *
+     * @return the boolean
+     */
     public boolean ping(){
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase(dbName).withCodecRegistry(pojoCodecRegistry);
@@ -82,10 +113,21 @@ public class Database {
         }
     }
 
+    /**
+     * Gets filler resume detail.
+     *
+     * @return the filler resume detail
+     * @throws NoUserFoundException the no user found exception
+     */
     public ResumeDetail getFillerResumeDetail() throws NoUserFoundException {
         return getResumeDetail("static", "TwoPagerOfficial");
     }
 
+    /**
+     * Upsert user.
+     *
+     * @param u the u
+     */
     public void upsertUser(User u) {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase(dbName).withCodecRegistry(pojoCodecRegistry);
@@ -106,6 +148,12 @@ public class Database {
         }
     }
 
+    /**
+     * Insert user.
+     *
+     * @param u the u
+     * @throws InsertionException the insertion exception
+     */
     public void insertUser(User u) throws InsertionException {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase(dbName).withCodecRegistry(pojoCodecRegistry);
@@ -126,6 +174,13 @@ public class Database {
         }
     }
 
+    /**
+     * Gets all resume details.
+     *
+     * @param username the username
+     * @return the all resume details
+     * @throws NoUserFoundException the no user found exception
+     */
     public List<ResumeDetail> getAllResumeDetails(String username) throws NoUserFoundException {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase(dbName);
@@ -150,6 +205,14 @@ public class Database {
         }
     }
 
+    /**
+     * Gets resume detail.
+     *
+     * @param username          the username
+     * @param resumeDetailTitle the resume detail title
+     * @return the resume detail
+     * @throws NoUserFoundException the no user found exception
+     */
     public ResumeDetail getResumeDetail(String username, String resumeDetailTitle) throws NoUserFoundException {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase(dbName).withCodecRegistry(pojoCodecRegistry);
@@ -190,7 +253,14 @@ public class Database {
             throw new RuntimeException(e);
         }
     }
-    
+
+    /**
+     * Add resume detail.
+     *
+     * @param username  the username
+     * @param newDetail the new detail
+     * @throws NoUserFoundException the no user found exception
+     */
     public void addResumeDetail(String username, ResumeDetail newDetail) throws NoUserFoundException {
         try (MongoClient mongoClient = MongoClients.create(uri)) {
             MongoDatabase database = mongoClient.getDatabase(dbName).withCodecRegistry(pojoCodecRegistry);
