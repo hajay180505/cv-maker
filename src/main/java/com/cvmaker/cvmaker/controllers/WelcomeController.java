@@ -455,7 +455,7 @@ public class WelcomeController {
             if (startMonth.isEmpty() || endMonth.isEmpty() || startYear.isEmpty() ||
                     endYear.isEmpty() || extraCurriculars.isEmpty() || areasOfInterest.isEmpty()) {
                 allCorrect.set(false);
-                System.out.println("Please fill in all fields.");
+                messageLabel.setText("Please fill in all fields.");
             } else {
                 try{
                     List<String> months = Arrays.asList(
@@ -481,7 +481,7 @@ public class WelcomeController {
                     resumeDetail.setObjective(objective);
                     resumeDetail.setExtraCurricular(ecList);
                     resumeDetail.setAreasOfInterest(areasList);
-                    getAcademicQualifications(stage, u, resumeDetail);
+                    getDegreeDetails(stage, u, resumeDetail);
                 }
             }
         });
@@ -492,6 +492,124 @@ public class WelcomeController {
         wrapper.getChildren().addAll(header, new Separator(Orientation.HORIZONTAL), objectivePage);
         Scene objectiveScene = new Scene(wrapper, 600, 700); // Adjust dimensions as needed
         stage.setScene(objectiveScene);
+    }
+
+    /**
+     * Get degree details.
+     *
+     * @param stage        the stage
+     * @param u            the user
+     * @param resumeDetail the resume detail
+     */
+    void getDegreeDetails(@NotNull Stage stage, User u, ResumeDetail resumeDetail){
+        VBox wrapper = new VBox();
+        wrapper.setPadding(new Insets(20));
+        wrapper.setStyle("-fx-background-color: #e6f7ff;");
+
+        Label header = new Label("Degree Details");
+        header.setFont(Font.font("Arial", 24));
+
+        GridPane objectivePage = new GridPane();
+        objectivePage.setPadding(new Insets(20));
+        objectivePage.setHgap(10);
+        objectivePage.setVgap(10);
+
+        // Add labels and text fields for objective details
+        Label courseNameLabel = new Label("Course name");
+        courseNameLabel.setFont(Font.font("Arial", 18));
+        TextField courseNameField = new TextField();
+        setMaxLength(courseNameField, 20);
+        courseNameField.setPrefWidth(150);
+
+        Label collegeNameLabel = new Label("College Name");
+        collegeNameLabel.setFont(Font.font("Arial", 18));
+        TextField collegeNameField = new TextField();
+        setMaxLength(collegeNameField, 20);
+        collegeNameField.setPrefWidth(150);
+
+        Label yearOfStudyLabel = new Label("Year of study");
+        yearOfStudyLabel.setFont(Font.font("Arial", 18));
+        TextField yearOfStudyField = new TextField();
+        setMaxLength(yearOfStudyField, 4);
+        yearOfStudyField.setPrefWidth(150);
+
+        Label departmentNameLabel = new Label("Department Name");
+        departmentNameLabel.setFont(Font.font("Arial", 18));
+        TextField departmentNameField = new TextField();
+        setMaxLength(departmentNameField, 4);
+        departmentNameField.setPrefWidth(150);
+
+        Label courseDurationLabel = new Label("Course Duration");
+        courseDurationLabel.setFont(Font.font("Arial", 18));
+        TextField courseDurationField = new TextField();
+        setMaxLength(courseDurationField, 100);
+        courseDurationField.setPrefWidth(150);
+
+
+        // Add components to the layout
+        objectivePage.add(courseNameLabel, 0, 0);
+        objectivePage.add(courseNameField, 1, 0);
+        objectivePage.add(collegeNameLabel, 0, 1);
+        objectivePage.add(collegeNameField, 1, 1);
+        objectivePage.add(yearOfStudyLabel, 0, 2);
+        objectivePage.add(yearOfStudyField, 1, 2);
+        objectivePage.add(departmentNameLabel, 0, 3);
+        objectivePage.add(departmentNameField, 1, 3);
+        objectivePage.add(courseDurationLabel, 0, 4);
+        objectivePage.add(courseDurationField, 1, 4);
+
+        Label messageLabel = new Label();
+        messageLabel.setTextFill(Color.valueOf("#EA4335"));
+        messageLabel.setFont(Font.font("Arial", 18));
+
+        objectivePage.add(messageLabel, 0, 12, 2, 1);
+
+        // Create a button to submit the input
+        Button submitButton = new Button("Next");
+        submitButton.setStyle("-fx-background-color: #008CBA; -fx-text-fill: white; -fx-font-size: 16px; -fx-padding: 10 20;");
+
+        submitButton.setOnAction(event -> {
+            String courseName = courseNameField.getText();
+            String collegeName = collegeNameField.getText();
+            String yearOfStudy = yearOfStudyField.getText();
+            String departmentName = departmentNameField.getText();
+            String courseDuration = courseDurationField.getText();
+            AtomicBoolean allCorrect = new AtomicBoolean(true);
+
+
+            // Validate input
+            if (courseName.isEmpty() || collegeName.isEmpty() || yearOfStudy.isEmpty() ||
+                    departmentName.isEmpty() || courseDuration.isEmpty() ) {
+                allCorrect.set(false);
+                messageLabel.setText("Please fill in all fields.");
+            } else {
+                try{
+                  Integer.parseInt(yearOfStudy);
+                  Integer.parseInt(courseDuration);
+                } catch ( NumberFormatException e ) {
+                    messageLabel.setText(e.getMessage());
+                }
+
+                if (allCorrect.get()){
+                    resumeDetail.setCourse(courseName);
+                    resumeDetail.setCollegeName(collegeName);
+                    resumeDetail.setYearOfStudy(yearOfStudy);
+                    resumeDetail.setDepartmentName(departmentName);
+                    resumeDetail.setCourseDuration(courseDuration);
+                    getAcademicQualifications(stage, u, resumeDetail);
+
+
+                }
+            }
+        });
+
+        objectivePage.add(submitButton, 0, 6, 2, 1); // span 2 columns
+
+        // Set the scene on the stage
+        wrapper.getChildren().addAll(header, new Separator(Orientation.HORIZONTAL), objectivePage);
+        Scene objectiveScene = new Scene(wrapper, 600, 700); // Adjust dimensions as needed
+        stage.setScene(objectiveScene);
+
     }
 
     /**
@@ -1075,8 +1193,9 @@ public class WelcomeController {
     /**
      * Show confirmation screen.
      *
-     * @param stage the stage
-     * @param user  the user
+     * @param stage        the stage
+     * @param user         the user
+     * @param resumeDetail the resume detail
      */
     void showConfirmationScreen(Stage stage, User user, ResumeDetail resumeDetail) {
         VBox confirmationBox = new VBox(20);
@@ -1112,7 +1231,9 @@ public class WelcomeController {
     /**
      * Show customize template screen.
      *
-     * @param stage the stage
+     * @param stage        the stage
+     * @param u            the u
+     * @param resumeDetail the resume detail
      */
     void showCustomizeTemplateScreen(Stage stage, User u, ResumeDetail resumeDetail) {
         GridPane customizePage = new GridPane();
@@ -1127,7 +1248,6 @@ public class WelcomeController {
 
         // Pick color section
         Label colorLabel = new Label("Pick color:");
-        colorLabel.setStyle("-fx-text-fill: white;");
         ColorPicker colorPicker = new ColorPicker();
 
         // Template choice section
@@ -1176,7 +1296,7 @@ public class WelcomeController {
             } else {
                 System.out.println("Template created with color: " + selectedColor + ", template type: " + selectedTemplate);
                 // Display the selected file save path in the console (for now)
-                String fullFilePath = directoryPath + File.separator + filename;
+                String fullFilePath = directoryPath + filename ;
                 System.out.println("File will be saved at: " + fullFilePath);
 
 
@@ -1188,7 +1308,7 @@ public class WelcomeController {
                                     (float)selectedColor.getRed(),
                                     (float)selectedColor.getBlue(),
                                     (float)selectedColor.getGreen()
-                            ), u.getName(),
+                            ), u == null ? "static" : u.getName(),
                             fullFilePath
 
                     );
@@ -1229,6 +1349,50 @@ public class WelcomeController {
      * @param stage the stage
      */
     public void handleLoginInfo(Stage stage) {
+        GridPane loginPage = new GridPane();
+        loginPage.setPadding(new Insets(20));
+        loginPage.setHgap(10);
+        loginPage.setVgap(10);
+        loginPage.setStyle("-fx-background-color: #e6f7ff;");
+
+        // Create UI components
+        Label usernameLabel = new Label("Username");
+        TextField usernameField = new TextField();
+        usernameField.setPromptText("Enter your username");
+
+        Label passwordLabel = new Label("Password");
+        TextField passwordField = new PasswordField();
+        passwordField.setPromptText("Enter your password");
+
+        Button loginButton = new Button("Login");
+        Label messageLabel = new Label();
+
+        // Add components to the layout
+        loginPage.add(usernameLabel, 0, 0);
+        loginPage.add(usernameField, 1, 0);
+        loginPage.add(passwordLabel, 0, 1);
+        loginPage.add(passwordField, 1, 1);
+        loginPage.add(loginButton, 0, 2, 2, 1); // span 2 columns
+        loginPage.add(messageLabel, 0, 3, 2, 1); // span 2 columns
+
+        // Set button action
+        loginButton.setOnAction(e -> {
+            String username = usernameField.getText();
+            String password = passwordField.getText();
+
+            // Implement your login logic here
+            if (username.isEmpty() || password.isEmpty()) {
+                messageLabel.setText("Please enter both username and password.");
+            } else {
+                messageLabel.setText("Login successful!"); // Placeholder message
+                showCustomizeTemplateScreen(stage, null, ResumeTemplate.getLocalFillerResumeDetail());
+                // Proceed with successful login logic
+            }
+
+
+        } );
+        Scene customizeScene = new Scene(loginPage, 600, 500);
+        stage.setScene(customizeScene); // Set the scene on the stage to display the customize template screen
 
     }
 

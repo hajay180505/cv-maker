@@ -25,6 +25,8 @@ public class User {
      */
     List<ResumeDetail> resumeDetails;
 
+
+    public User() {}
     /**
      * Instantiates a new User.
      *

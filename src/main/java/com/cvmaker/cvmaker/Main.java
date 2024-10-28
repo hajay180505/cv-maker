@@ -219,6 +219,7 @@ public class Main extends Application {
     }
 
     public static void main(String[] args) {
+        // thank you beyonce!!!! <3
         launch(args);
     }
 }

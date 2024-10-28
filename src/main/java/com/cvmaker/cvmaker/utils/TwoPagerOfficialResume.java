@@ -271,7 +271,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         document.add(spacer);
         document.add(new Paragraph("OBJECTIVE")
                 .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                .setBackgroundColor(accentColor)
                 .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                 )
         );
@@ -288,7 +288,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         document.add(spacer);
         document.add(new Paragraph("ACADEMIC QUALIFICATION")
                 .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                .setBackgroundColor(accentColor)
                 .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                 ).setMarginBottom(-1)
         );
@@ -306,7 +306,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         document.add(spacer);
         document.add(new Paragraph("SKILL SET")
                 .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                .setBackgroundColor(accentColor)
                 .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                 )
         );
@@ -317,7 +317,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         document.add(spacer);
         document.add(new Paragraph("AREAS OF INTEREST")
                 .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                .setBackgroundColor(accentColor)
                 .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                 )
         );
@@ -328,7 +328,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         document.add(spacer);
         document.add(new Paragraph("ACADEMIC RECORD")
                 .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                .setBackgroundColor(accentColor)
                 .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                 )
         );
@@ -339,7 +339,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
             document.add(spacer);
             document.add(new Paragraph("RESEARCH EXPERIENCE")
                     .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                    .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                    .setBackgroundColor(accentColor)
                     .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                     )
             );
@@ -350,7 +350,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         document.add(spacer);
         document.add(new Paragraph("NON-ACADEMIC PROJECTS")
                 .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                .setBackgroundColor(accentColor)
                 .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                 )
         );
@@ -361,7 +361,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         document.add(spacer);
         document.add(new Paragraph("ACADEMIC PROJECTS")
                 .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                .setBackgroundColor(accentColor)
                 .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                 )
         );
@@ -372,7 +372,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         document.add(spacer);
         document.add(new Paragraph("EXTRA-CURRICULAR ACTIVITIES AND ACHIEVEMENTS")
                 .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                .setBackgroundColor(accentColor)
                 .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                 )
         );
@@ -386,7 +386,7 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
         document.add(spacer);
         document.add(new Paragraph("DECLARATION")
                 .setFont(calibriBold).setFontSize(12).setMarginLeft(3)
-                .setBackgroundColor(new DeviceRgb(238, 236, 225))
+                .setBackgroundColor(accentColor)
                 .setBorderBottom(new SolidBorder(ColorConstants.BLACK, .75f)
                 )
         );
@@ -418,12 +418,11 @@ public class TwoPagerOfficialResume implements ResumeTemplate {
 
     @Override
     public String generateResume(ResumeDetail resumeDetail, DeviceRgb accentColor, String username, String filename) throws IOException {
-        this.dest = filename + ".pdf";
+        this.dest = filename + ".pdf    " ;
         File f = new File(dest);
         if (f.exists()) {
             f.delete();
         }
-        f.mkdirs();
         this.resume = resumeDetail;
         this.accentColor = accentColor;
         return getTemplate();
